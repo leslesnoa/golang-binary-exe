@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  go:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    tty: true
+    restart: always
+    ports:
+      - "6000:6000"
+
+  engineer-exam-mysql-host:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: engineer-exam
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "3306:3306"
